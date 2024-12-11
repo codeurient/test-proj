@@ -75,7 +75,6 @@ class MovieController extends Controller
         $movie->update([
             'title' => $request->title,
             'poster' => $posterPath,
-            'published' => $request->has('published') ? $request->published : $movie->published,
         ]);
 
   
