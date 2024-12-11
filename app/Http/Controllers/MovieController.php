@@ -33,7 +33,7 @@ class MovieController extends Controller
         $movie = Movie::create([
             'title' => $validated['title'],
             'poster' => $posterPath,
-            'published' => false,
+            'published' => $validated['published'],
         ]);
 
         
