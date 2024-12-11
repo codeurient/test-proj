@@ -63,7 +63,6 @@ class MovieController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'poster' => 'required|string',
-            'published' => 'nullable|boolean',  
             'genre_ids' => 'nullable|array', 
             'genre_ids.*' => 'exists:genres,id', 
         ]);
