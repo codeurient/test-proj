@@ -62,16 +62,20 @@ class MovieController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'poster' => 'required|string',
+            'published' => 'nullable|boolean',  
+            'genre_ids' => 'nullable|array', 
+            'genre_ids.*' => 'exists:genres,id', 
         ]);
 
         $movie = Movie::findOrFail($id);
-
       
         $posterPath = $request->file('poster') ? $request->file('poster')->store('posters') : $movie->poster;
+
         $movie->update([
             'title' => $request->title,
             'poster' => $posterPath,
+            'published' => $request->has('published') ? $request->published : $movie->published,
         ]);
 
   
